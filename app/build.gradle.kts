@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -17,6 +19,50 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    applicationVariants.all{
+        outputs.all {
+            if(name.contains("release"))
+                (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
+                    .outputFileName = "app-$name-$versionName.apk"
+        }
+    }
+
+    flavorDimensions += "environment"
+    var baseUrl : String
+    var apiKey : String
+
+    productFlavors {
+        create("dev") {
+            applicationIdSuffix = ".dev"
+            baseUrl = "apiv3.apifootball.com"
+            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            dimension = "environment"
+            resValue("string", "app_name", "\"FootballApp Dev\"")
+            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
+            buildConfigField("String", "BASE_URL", "\"" + apiKey + "\"")
+        }
+
+        create("staging") {
+            applicationIdSuffix = ".staging"
+            baseUrl = "apiv3.apifootball.com"
+            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            dimension = "environment"
+            resValue("string", "app_name", "\"FootballApp Staging\"")
+            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
+            buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
+        }
+
+        create("prod") {
+            applicationIdSuffix = ".prod"
+            baseUrl = "apiv3.apifootball.com"
+            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            dimension = "environment"
+            resValue("string", "app_name", "\"Football App\"")
+            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
+            buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
     }
 
@@ -38,6 +84,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -66,4 +113,47 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // UI
+    implementation(libs.constraintlayout.compose)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.compose.runtime.livedata)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.accompanist.flowlayout)
+    implementation(libs.accompanist.permissions)
+    implementation(libs.accompanist.swiperefresh)
+    implementation(libs.accompanist.pager)
+    implementation(libs.feather.icons)
+
+    // Koin
+    implementation(libs.koin)
+
+    // Paging
+    implementation(libs.paging.common.ktx)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.paging.compose)
+
+    // Navigation
+    implementation(libs.navigation)
+
+    // Retrofit
+    api(libs.retrofit)
+    api(libs.retrofit.converter.gson)
+    api(libs.coroutines.core)
+    api(libs.coroutines.android)
+    api(libs.okhttp)
+    api(libs.okhttp.logging.interceptor)
+
+    // Room
+    implementation(libs.roomRuntime)
+    implementation(libs.roomKtx)
+    kapt(libs.roomCompiler)
+
+    // Chucker
+    releaseImplementation(libs.chuckerReleaseNoOp)
+    debugImplementation(libs.chuckerDebug)
 }
