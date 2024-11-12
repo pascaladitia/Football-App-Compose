@@ -41,8 +41,8 @@ android {
             apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
             dimension = "environment"
             resValue("string", "app_name", "\"FootballApp Dev\"")
-            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
-            buildConfigField("String", "BASE_URL", "\"" + apiKey + "\"")
+            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
+            buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
 
         create("staging") {
@@ -51,7 +51,7 @@ android {
             apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
             dimension = "environment"
             resValue("string", "app_name", "\"FootballApp Staging\"")
-            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
+            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
             buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
 
@@ -61,7 +61,7 @@ android {
             apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
             dimension = "environment"
             resValue("string", "app_name", "\"Football App\"")
-            buildConfigField("String", "API_KEY", "\"" + baseUrl + "\"")
+            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
             buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
     }
