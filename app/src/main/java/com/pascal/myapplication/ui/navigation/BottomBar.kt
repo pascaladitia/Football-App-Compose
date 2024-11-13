@@ -3,13 +3,10 @@ package com.pascal.myapplication.ui.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,6 +17,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import compose.icons.FeatherIcons
+import compose.icons.feathericons.Home
+import compose.icons.feathericons.Info
+import compose.icons.feathericons.User
+import compose.icons.feathericons.Video
 
 @Composable
 fun BottomBar(
@@ -28,7 +30,7 @@ fun BottomBar(
 ) {
     Box(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.onSurface)
+            .background(Color.White)
     ) {
         NavigationBar(
             containerColor = Color.Transparent,
@@ -38,14 +40,29 @@ fun BottomBar(
             val navigationItems = listOf(
                 NavigationItem(
                     title = "Home",
-                    icon = Icons.Outlined.Home,
+                    icon = FeatherIcons.Home,
                     screen = Screen.HomeScreen
+                ),
+                NavigationItem(
+                    title = "Team",
+                    icon = FeatherIcons.Info,
+                    screen = Screen.TeamScreen
+                ),
+                NavigationItem(
+                    title = "Live",
+                    icon = FeatherIcons.Video,
+                    screen = Screen.LiveScreen
+                ),
+                NavigationItem(
+                    title = "Profile",
+                    icon = FeatherIcons.User,
+                    screen = Screen.ProfileScreen
                 )
             )
             navigationItems.map { item ->
                 NavigationBarItem(
                     icon = {
-                        val iconSize = if (currentRoute == item.screen.route) 32.dp else 28.dp
+                        val iconSize = if (currentRoute == item.screen.route) 28.dp else 24.dp
                         Icon(
                             imageVector = item.icon,
                             contentDescription = item.title,
@@ -67,12 +84,6 @@ fun BottomBar(
                     },
                     alwaysShowLabel = false,
                     selected = currentRoute == item.screen.route,
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color.White,
-                        unselectedIconColor = Color.Gray,
-                        unselectedTextColor = Color.Transparent,
-                        indicatorColor = Color.Transparent
-                    ),
                     onClick = {
                         navController.navigate(item.screen.route) {
                             popUpTo(navController.graph.findStartDestination().id) {

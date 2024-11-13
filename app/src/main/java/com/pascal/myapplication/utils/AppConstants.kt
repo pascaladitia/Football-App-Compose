@@ -7,5 +7,8 @@ class AppConstants {
         const val ERROR_LOGIN = "Incorrect email or password!"
         const val BEARER = "Bearer "
         const val FORMAT_DATE = "yyyy-MM-dd"
+
+        const val LOGO_URL="https://media.api-sports.io/football/teams/"
+        const val LEAGUE_LOGO_URL="https://media.api-sports.io/football/leagues/"
     }
 }

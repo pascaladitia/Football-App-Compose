@@ -37,8 +37,8 @@ android {
     productFlavors {
         create("dev") {
             applicationIdSuffix = ".dev"
-            baseUrl = "apiv3.apifootball.com"
-            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            baseUrl = "api-football-v1.p.rapidapi.com/v3/"
+            apiKey = "f2fd4395eamshe3ae88331878db8p1b083ejsn14a149cee9a5"
             dimension = "environment"
             resValue("string", "app_name", "\"FootballApp Dev\"")
             buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
@@ -47,8 +47,8 @@ android {
 
         create("staging") {
             applicationIdSuffix = ".staging"
-            baseUrl = "apiv3.apifootball.com"
-            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            baseUrl = "api-football-v1.p.rapidapi.com/v3/"
+            apiKey = "f2fd4395eamshe3ae88331878db8p1b083ejsn14a149cee9a5"
             dimension = "environment"
             resValue("string", "app_name", "\"FootballApp Staging\"")
             buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
@@ -57,8 +57,8 @@ android {
 
         create("prod") {
             applicationIdSuffix = ".prod"
-            baseUrl = "apiv3.apifootball.com"
-            apiKey = "f9b084ef555f4af090dc02aae5c85aba3e63a9a83fd60d02b49e1089ed483fb4"
+            baseUrl = "api-football-v1.p.rapidapi.com/v3/"
+            apiKey = "f2fd4395eamshe3ae88331878db8p1b083ejsn14a149cee9a5"
             dimension = "environment"
             resValue("string", "app_name", "\"Football App\"")
             buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
